@@ -13,7 +13,7 @@ export const auth = betterAuth({
                     clientSecret: process.env.INSTAGRAM_CLIENT_SECRET as string,
                     authorizationUrl: "https://api.instagram.com/oauth/authorize",
                     tokenUrl: "https://api.instagram.com/oauth/access_token",
-                    scope: "instagram_business_manage_messages",
+                    scopes: ["instagram_business_manage_messages"],
                 }, 
             ] 
         }) 
