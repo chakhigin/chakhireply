@@ -1,0 +1,10 @@
+POST https://api.instagram.com/oauth/access_token HTTP/1.1
+content-type: application/json
+
+{
+    client_id: "28278206125157935",
+    client_secret: "fe6f6a654e3b1f6b1685f08bda528668",
+    grant_type: "authorization_code",
+    redirect_uri: "https://localhost:3000",
+    code: "AQDZzX-Asls5AAqvCIXNbPoHOfBBM3r3l1YeBDjTzr2xei7S7ZWmkgKgA2teWONhjX0F1DWUEOO__9IQDqCOcAXEo6bVBy2MY6UCjQxjFbZyDp7xB5datGFKJGrcm9iO0vbiGummDH_F2Pgrwgw6dN0JqW4K7UripbKSe48SeHCIQ5wbIVhiGMrvWONShwFClLAnKu6DFNmkqwSQYIzsfjk4oK4DYpezMKJYslwhk2F-OQ",
+}
