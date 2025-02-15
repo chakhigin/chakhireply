@@ -52,7 +52,6 @@ export async function POST(req:NextRequest){
     const body = await req.json();
     console.log('Webhook received:', JSON.stringify(body, null, 2));
 
-    if (body.object === 'instagram' && body.entry) {
         for (const entry of body.entry) {
             for (const messagingEvent of entry.messaging) {
                 const senderId = messagingEvent.sender.id;
@@ -62,5 +61,4 @@ export async function POST(req:NextRequest){
                 console.log(`Message text: ${messageText}`);
             }
         }
-    }
 }
