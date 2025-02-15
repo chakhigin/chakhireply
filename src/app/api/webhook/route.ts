@@ -1,3 +1,4 @@
+import UserId from '@/app/action/userId';
 import { NextRequest, NextResponse } from 'next/server';
 
 export interface WebhookPayload {
@@ -46,7 +47,7 @@ export async function POST(req:NextRequest){
             for (const messagingEvent of entry.messaging) {
                 const senderId = messagingEvent.sender.id;
                 const messageText = messagingEvent.message?.text;
-
+                await UserId(body,messagingEvent.sender.id)
                 console.log(`Message from user ID: ${senderId}`);
                 console.log(`Message text: ${messageText}`);
             }
