@@ -35,11 +35,16 @@ export async function GET(req:NextRequest) {
         const mode = req.nextUrl.searchParams.get("hub.mode") as string;
         const token = req.nextUrl.searchParams.get("hub.verify_token") as string;
         const challenge = req.nextUrl.searchParams.get("hub.challenge") as string;
-        if(mode === 'subscribe' && token === "chakhitoken"){
+        if(mode === "subscribe" && token === "chakhitoken"){
             console.log(challenge);
             console.log(token);
             console.log(mode);
+            console.log('Webhook verified');
             return new NextResponse(challenge);
+        }
+        else {
+            console.log('Webhook verification failed');
+            return new NextResponse("error");
         }
 }
 
