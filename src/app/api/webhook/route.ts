@@ -35,7 +35,12 @@ export async function GET(req:NextRequest) {
         const mode = req.nextUrl.searchParams.get("hub.mode") as string;
         const token = req.nextUrl.searchParams.get("hub.verify_token") as string;
         const challenge = req.nextUrl.searchParams.get("hub.challenge") as string;
-        return new NextResponse(challenge);
+        if(mode === 'subscribe' && token === "chakhitoken"){
+            console.log(challenge);
+            console.log(token);
+            console.log(mode);
+            return new NextResponse(challenge);
+        }
 }
 
 export async function POST(req:NextRequest){
