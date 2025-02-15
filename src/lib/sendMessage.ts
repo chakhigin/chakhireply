@@ -1,8 +1,9 @@
 import axios from "axios";
 
 export const SendMessage = async (senderId: string) => {
+    console.log("chakhi");
     try{
-        const response = await axios.post("", {
+        const response = await axios.post("https://graph.instagram.com/v22.0/me/messages", {
             recipient: { id: senderId },
             message: { text: "chakhi" },
         },{

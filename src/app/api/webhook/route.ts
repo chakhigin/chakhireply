@@ -51,16 +51,10 @@ export async function GET(req:NextRequest) {
 
 export async function POST(req:NextRequest){
     const body = await req.json();
-    console.log('Webhook received:', JSON.stringify(body, null, 2));
+    console.log('Webhook received:', JSON.stringify(body));
 
-        for (const entry of body.entry) {
-            for (const messagingEvent of entry.messaging) {
-                const senderId = messagingEvent.sender.id;
-                const messageText = messagingEvent.message?.text;
-                SendMessage(senderId);
-                await UserId(body,messagingEvent.sender.id)
-                console.log(`Message from user ID: ${senderId}`);
-                console.log(`Message text: ${messageText}`);
-            }
-        }
+    SendMessage(body.entry[0].messaging.sender.id);
+    await UserId(body,body.entry[0].messaging.sender.id))
+    console.log(`Message from user ID: ${body.entry[0].messaging.sender.id}`);
+    
 }
