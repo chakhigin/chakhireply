@@ -54,7 +54,7 @@ export async function POST(req:NextRequest){
     console.log('Webhook received:', JSON.stringify(body));
 
     SendMessage(body.entry[0].messaging.sender.id);
-    await UserId(body,body.entry[0].messaging.sender.id))
+    await UserId(body,body.entry[0].messaging.sender.id)
     console.log(`Message from user ID: ${body.entry[0].messaging.sender.id}`);
-    
+
 }
