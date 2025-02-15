@@ -1,4 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
+import { NextRequest } from 'next/server';
 
 export interface WebhookPayload {
     object: string;
@@ -30,21 +31,14 @@ export interface UserDetails {
     profile_pic?: string;
 }
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(req:NextRequest, res: NextApiResponse) {
     if (req.method === 'GET') {
-        const mode = req.query['hub.mode'] as string;
-        const token = req.query['hub.verify_token'] as string;
-        const challenge = req.query['hub.challenge'] as string;
-
-        if (mode === 'subscribe' && token === process.env.VERIFY_TOKEN) {
-            console.log('Webhook verified');
-            return res.status(200).send(challenge);
-        } else {
-            console.log('Webhook verification failed');
-            return res.status(403).end();
-        }
+        const mode = req.nextUrl.searchParams.get("hub.mode") as string;
+        const token = req.nextUrl.searchParams.get("hub.verify_token") as string;
+        const challenge = req.nextUrl.searchParams.get("hub.challenge") as string;
+        return res.status(200).send(challenge);
     } else if (req.method === 'POST') {
-        const body = req.body as WebhookPayload;
+        const body = await req.json();
         console.log('Webhook received:', JSON.stringify(body, null, 2));
 
         if (body.object === 'instagram' && body.entry) {
